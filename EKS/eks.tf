@@ -80,8 +80,9 @@ resource "aws_launch_template" "eks-with-disks" {
 }
 
 data "external" "get_public_key" {
-  program = ["bash", "-c", "echo -n "${ secrets.PUBLIC_KEY }"]
+  program = ["bash", "-c", "echo -n \"${{ secrets.PUBLIC_KEY }}\""]
 }
+
 
 resource "aws_key_pair" "ssh-key-ec2-instance" {
   key_name   = var.ssh-keyname
