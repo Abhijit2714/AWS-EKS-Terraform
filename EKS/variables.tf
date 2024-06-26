@@ -66,4 +66,5 @@ variable "eks_container_regitry_policy_attachment_id" {
 
 variable "TF_VAR_public_key" {
   type = string
+  default = "none"
 }
