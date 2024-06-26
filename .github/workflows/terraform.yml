@@ -1,0 +1,34 @@
+name: Terraform Apply
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Retrieve Public Key from Secrets
+      id: get_public_key
+      run: echo "::set-output name=public_key::${{ secrets.PUBLIC_KEY }}"
+
+    - name: Initialize Terraform
+      run: terraform init
+
+    - name: Plan Terraform
+      run: terraform plan -out=tfplan
+
+    - name: Apply Terraform
+      run: terraform apply -auto-approve tfplan \
+        -var="public_key=${{ steps.get_public_key.outputs.public_key }}"
