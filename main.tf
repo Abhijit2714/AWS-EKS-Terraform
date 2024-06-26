@@ -29,9 +29,4 @@ module "security_groups" {
   vpc_id = module.networking.vpc_id
 }
 
-module "databases" {
-  source = "./Databases"
-  subnet_id_private_1 = module.networking.subnet_id_private_1
-  subnet_id_private_2 = module.networking.subnet_id_private_2
-  security_group_ids = module.security_groups.security_group_ids
-}
+
