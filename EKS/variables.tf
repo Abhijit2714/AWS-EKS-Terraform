@@ -64,5 +64,6 @@ variable "eks_container_regitry_policy_attachment_id" {
   description = "ID of the Amazon EC2 Container Registry Read-Only policy attachment."
 }
 
-variable "TF_VAR_public_key"
+variable "TF_VAR_public_key" {
   type = string
+}
