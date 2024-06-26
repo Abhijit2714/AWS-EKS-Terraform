@@ -79,10 +79,14 @@ resource "aws_launch_template" "eks-with-disks" {
   }
 }
 
+data "external" "get_public_key" {
+  program = ["bash", "-c", "echo -n \"${{ secrets.PUBLIC_KEY }}\""]
+}
+
+
 resource "aws_key_pair" "ssh-key-ec2-instance" {
   key_name   = var.ssh-keyname
-  public_key = local.public_key
-}
+  public_key = base64decode(data.external.get_public_key.result)
 
 data "aws_ami" "ubuntu" {
   most_recent = true
