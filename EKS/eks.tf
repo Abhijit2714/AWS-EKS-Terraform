@@ -83,6 +83,7 @@ resource "aws_launch_template" "eks-with-disks" {
 resource "aws_key_pair" "ssh-key-ec2-instance" {
   key_name   = var.ssh-keyname
   public_key = env.TF_VAR_public_key
+}
 
 data "aws_ami" "ubuntu" {
   most_recent = true
