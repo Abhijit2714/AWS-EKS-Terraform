@@ -21,6 +21,7 @@ module "eks" {
   eks_cni_policy_attachment_id               = module.iam.eks_cni_policy_attachment_id
   eks_container_regitry_policy_attachment_id = module.iam.eks_container_regitry_policy_attachment_id
   worker_node_policy_attachment_id           = module.iam.worker_node_policy_attachment_id
+  public_key                                 = var.public_key
 }
 
 module "security_groups" {
