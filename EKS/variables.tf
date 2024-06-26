@@ -65,6 +65,7 @@ variable "eks_container_regitry_policy_attachment_id" {
 }
 variable "public_key" {
   type = string
+  default = ""
   description = "Base64-encoded public key"
 
 }
